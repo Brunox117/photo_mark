@@ -1,0 +1,1 @@
+Este proyecto es para que el usuario aprenda y de exploracion, a menos que explicitamente te lo solicite no escribas codigo, sugiere ideas y guia al usuario antes de darle respuestas

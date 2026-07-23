@@ -18,7 +18,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Photo Mark')),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -34,23 +33,22 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.add_a_photo),
                 label: const Text('Seleccionar imagen'),
               ),
+              if (image != null)
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      image = null;
+                    });
+                  },
+                  child: const Text('Borrar imagen'),
+                ),
             ],
           ),
-          (image != null)
-              ? Column(
-                  children: [
-                    PhotoMarkWidget(image: image!),
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          image = null;
-                        });
-                      },
-                      child: const Text('Borrar imagen'),
-                    ),
-                  ],
-                )
-              : const Text('Sin imagen seleccionada'),
+          Expanded(
+            child: image != null
+                ? PhotoMarkWidget(image: image!)
+                : const Center(child: Text('Sin imagen seleccionada')),
+          ),
         ],
       ),
     );

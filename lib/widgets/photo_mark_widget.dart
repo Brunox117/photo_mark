@@ -28,9 +28,6 @@ class _PhotoMarkWidgetState extends State<PhotoMarkWidget> {
     Colors.purple,
     Colors.orange,
     Colors.pink,
-    Colors.brown,
-    Colors.grey,
-    Colors.black,
   ];
   int currentColor = 0;
   final List<double> strokeWidths = [2, 6, 12];
@@ -57,9 +54,19 @@ class _PhotoMarkWidgetState extends State<PhotoMarkWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      fit: StackFit.expand,
       children: [
-        Image.file(File(widget.image.path)),
-        CustomPaint(painter: PhotoPainter(strokes: strokes)),
+        Positioned.fill(
+          child: Image.file(
+            File(widget.image.path),
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned.fill(
+          child: CustomPaint(
+            painter: PhotoPainter(strokes: strokes),
+          ),
+        ),
         Positioned.fill(
           child: GestureDetector(
             onPanStart: (details) {
